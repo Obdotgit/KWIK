@@ -1,0 +1,20 @@
+{
+    "manifest_version": 3,
+    "name": "KWIK",
+    "version": "1.0.0",
+    "description": "KWIK is a lightweight, customisable Chromium extension for quick access to your favourite web apps. Features include favourites, recently used apps, multiple color themes, tips, backup and more.",
+    "author": "KWIK Team",
+    "action": {
+        "default_popup": "popup.html",
+        "default_title": "KWIK Launcher"
+    },
+    "permissions": [
+        "storage"
+    ],
+    "icons": {
+        "16": "icons/kwik-16.png",
+        "32": "icons/kwik-32.png",
+        "48": "icons/kwik-48.png",
+        "128": "icons/kwik-128.png"
+    },
+}
