@@ -63,7 +63,7 @@ let dragSrcEl = null;
 let editingIndex = null;
 let showFavoritesOnly = false;
 
-document.getElementById('close-btn').addEventListener('click', function() {
+closeBtn.addEventListener('click', function() {
     window.close();
 });
 
