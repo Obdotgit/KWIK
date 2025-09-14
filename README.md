@@ -15,9 +15,14 @@ You can open KWIK by clicking the jigsaw icon and then choosing "KWIK".
 - [x] Favourites (1.0.0+)
 - [x] KWIK Tips (1.0.0+)
 - [x] About KWIK app (1.0.0+)
+- [x] Ctrl-Shift-Space to open app (Chrome 127+ and 1.0.1+)
 - [ ] File apps
 - [ ] KWIK Tips app
 - [ ] KWIK Help app
 - [ ] Further customisation
 ## Versions
-- 1.0.0 (latest)
+- 1.0.1 (latest)
+- 1.0.0
+## Requirements
+1. You must be using a Chromium-based browser
+2. You must be able to use HTML 5, CSS 3 and JavaScript
