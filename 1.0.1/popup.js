@@ -59,6 +59,7 @@ let apps = [];
 let favorites = [];
 let recentlyUsed = [];
 let darkMode = false;
+let darkModeToggle = false;
 let dragSrcEl = null;
 let editingIndex = null;
 let showFavoritesOnly = false;
