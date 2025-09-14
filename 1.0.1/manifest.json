@@ -9,7 +9,8 @@
         "default_title": "KWIK Launcher"
     },
     "permissions": [
-        "storage"
+        "storage",
+        "activeTab"
     ],
     "icons": {
         "16": "icons/kwik-16.png",
@@ -25,6 +26,12 @@
             "description": "Open KWIK Launcher"
         }
     },
+    "content_scripts": [
+        {
+            "matches": ["<all_urls>"],
+            "js": ["content.js"]
+        }
+    ],
     "background": {
         "service_worker": "background.js"
     }
