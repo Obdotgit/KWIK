@@ -658,3 +658,17 @@ button:active {
     font-weight: 400;
     user-select: none;
 }
+
+.close-button {
+    background: none;
+    border: none;
+    color: #ff4d4d;
+    font-size: 24px;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    cursor: pointer;
+}
+.close-button:hover {
+    color: #d00000;
+}
