@@ -21,7 +21,8 @@
         "open_kwik": {
             "suggested_key": {
                 "default": "Ctrl+Shift+Space"
-            }
+            },
+            "description": "Open KWIK Launcher"
         }
     },
     "background": {
