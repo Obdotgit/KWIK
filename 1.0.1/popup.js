@@ -63,8 +63,15 @@ let dragSrcEl = null;
 let editingIndex = null;
 let showFavoritesOnly = false;
 
-closeBtn.addEventListener('click', function() {
-    window.close();
+document.addEventListener('DOMContentLoaded', () => {
+    const closeBtn = document.getElementById('close-btn');
+    if (closeBtn) {
+        closeBtn.addEventListener('click', function() {
+            window.close();
+        });
+    } else {
+        console.error('Close button not found');
+    }
 });
 
 function isProtocolUrl(url) {
