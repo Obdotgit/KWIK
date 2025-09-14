@@ -1,0 +1,660 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: white;
+    color: black;
+    width: 320px;
+    padding: 12px;
+    user-select: none;
+    overflow: hidden;
+    position: relative;
+}
+
+.kwik-footer-container {
+    width: 100vw;
+    min-width: 352px;
+    max-width: 352px;
+    margin: 0;
+    padding: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+}
+
+.popup-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    height: 100vh;
+    box-sizing: border-box;
+    padding-bottom: 54px;
+    gap: 12px;
+    overflow: hidden;
+    margin-top: 54px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(90deg, #00cc66 0%, #00bfff 100%);
+    border-radius: 10px;
+    box-shadow: 0 2px 12px rgba(0,204,102,0.08);
+    padding: 10px 16px;
+    margin-bottom: 8px;
+    animation: headerDrop 0.7s cubic-bezier(0.23, 1, 0.32, 1);
+    transition: background 0.4s;
+}
+
+h1 {
+    font-size: 1.8em;
+    color: #fff;
+    margin: 0;
+    user-select: text;
+    letter-spacing: 0.04em;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.10);
+    font-weight: 700;
+    transition: color 0.3s;
+}
+
+#settingsBtn {
+    background: none;
+    border: none;
+    font-size: 1.5em;
+    cursor: pointer;
+    color: #fff;
+    transition: color 0.2s;
+}
+
+#settingsBtn:hover,
+#settingsBtn:focus {
+    color: #ffe066;
+    outline: none;
+}
+
+#addAppBtn {
+    background-color: #00cc66;
+    color: white;
+    border: none;
+    padding: 10px 14px;
+    font-size: 1em;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    user-select: none;
+}
+
+#addAppBtn:hover,
+#addAppBtn:focus {
+    background-color: #00994d;
+    outline: none;
+}
+
+#searchInput {
+    width: 100%;
+    padding: 8px 10px;
+    border-radius: 6px;
+    border: 1.5px solid #00cc66;
+    font-size: 1em;
+    box-sizing: border-box;
+}
+
+#searchInput::placeholder {
+    color: #999;
+}
+
+#appsGrid {
+    flex-grow: 1;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+    gap: 12px;
+    overflow: visible;
+    padding-right: 4px;
+    min-height: 0;
+}
+
+.app-tile {
+    background-color: #f0f0f0;
+    border-radius: 12px;
+    padding: 12px 10px 14px;
+    text-align: center;
+    cursor: pointer;
+    position: relative;
+    transition: background-color 0.2s ease;
+    user-select: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 80px;
+    height: 80px;
+    border: 2px solid #e0e0e0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    animation: tileFadeIn 0.5s;
+}
+
+.app-tile:hover,
+.app-tile.dragging {
+    background-color: #e6ffe6;
+    box-shadow: 0 4px 16px rgba(0,204,102,0.12);
+    transform: scale(1.03);
+    transition: box-shadow 0.2s, transform 0.2s;
+}
+
+.app-tile.dragging {
+    opacity: 0.6;
+    cursor: grabbing;
+}
+
+.app-icon {
+    font-size: 32px;
+    margin-bottom: 8px;
+}
+
+.app-name {
+    font-weight: 600;
+    font-size: 0.95em;
+    word-break: break-word;
+    color: black;
+    user-select: text;
+}
+
+.btn-small {
+    position: absolute;
+    background: #ff4c4c;
+    border: none;
+    color: white;
+    font-weight: bold;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    line-height: 18px;
+    font-size: 14px;
+    top: 6px;
+    right: 6px;
+    cursor: pointer;
+    user-select: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.9;
+    transition: opacity 0.2s ease;
+}
+
+.btn-small:hover,
+.btn-small:focus {
+    opacity: 1;
+    outline: none;
+}
+
+.btn-edit {
+    background: #00cc66;
+    top: 6px;
+    right: 32px;
+}
+
+.protocol-badge {
+    position: absolute;
+    bottom: 6px;
+    right: 6px;
+    background: #00cc66;
+    color: white;
+    font-size: 10px;
+    padding: 2px 6px;
+    border-radius: 12px;
+    font-weight: 700;
+    user-select: none;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    box-shadow: 0 0 3px #008f3f;
+}
+
+#appsGrid::-webkit-scrollbar {
+    width: 8px;
+}
+
+#appsGrid::-webkit-scrollbar-thumb {
+    background: #00cc66;
+    border-radius: 10px;
+}
+
+footer {
+    text-align: center;
+    font-size: 0.75em;
+    color: #555;
+    margin-top: 6px;
+    user-select: none;
+}
+
+#modalBackdrop {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+#editModal {
+    background: white;
+    border-radius: 12px;
+    padding: 20px 25px;
+    width: 280px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+#editModal label {
+    font-weight: 600;
+    font-size: 0.9em;
+    margin-bottom: 4px;
+    color: #333;
+    user-select: text;
+}
+
+#editModal input {
+    width: 100%;
+    padding: 8px 10px;
+    border-radius: 6px;
+    border: 1.5px solid #00cc66;
+    font-size: 1em;
+    box-sizing: border-box;
+}
+
+#editModal input:focus {
+    outline: none;
+    border-color: #008f3f;
+}
+
+#modalButtons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 10px;
+}
+
+#modalButtons button {
+    padding: 8px 14px;
+    font-weight: 600;
+    font-size: 1em;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    user-select: none;
+    transition: background-color 0.3s ease;
+}
+
+#saveBtn {
+    background-color: #00cc66;
+    color: white;
+}
+
+#saveBtn:hover, #saveBtn:focus {
+    background-color: #00994d;
+    outline: none;
+}
+
+#cancelBtn {
+    background-color: #ddd;
+    color: #555;
+}
+
+#cancelBtn:hover, #cancelBtn:focus {
+    background-color: #bbb;
+    outline: none;
+}
+
+#settingsModalBackdrop {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1001;
+}
+
+#settingsModal {
+    background: white;
+    border-radius: 12px;
+    padding: 20px 25px;
+    width: 260px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+#settingsModal h2 {
+    margin: 0 0 12px;
+    font-size: 1.5em;
+    color: #00cc66;
+}
+
+#settingsModal button {
+    padding: 8px 14px;
+    font-weight: 600;
+    font-size: 1em;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    user-select: none;
+    transition: background-color 0.3s ease;
+}
+
+#clearAllBtn {
+    background-color: #ff4c4c;
+    color: white;
+}
+
+#clearAllBtn:hover, #clearAllBtn:focus {
+    background-color: #e60000;
+    outline: none;
+}
+
+#closeSettingsBtn {
+    background-color: #ddd;
+    color: #555;
+}
+
+#closeSettingsBtn:hover, #closeSettingsBtn:focus {
+    background-color: #bbb;
+    outline: none;
+}
+
+#recentlyUsedSection {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.recent-app-tile {
+    background-color: #e6f7ff;
+    border-radius: 12px;
+    padding: 12px 10px 14px;
+    text-align: center;
+    cursor: pointer;
+    position: relative;
+    transition: background-color 0.2s ease;
+    user-select: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.recent-app-tile:hover {
+    background-color: #ccf2ff;
+}
+
+body.dark-mode {
+    background: #121212;
+    color: #e0e0e0;
+}
+
+.header.dark-mode {
+    border-bottom: 1px solid #333;
+}
+
+h1.dark-mode {
+    color: #00e676;
+}
+
+#settingsBtn.dark-mode {
+    color: #00e676;
+}
+
+#addAppBtn.dark-mode {
+    background-color: #00e676;
+    color: white;
+}
+
+#addAppBtn.dark-mode:hover,
+#addAppBtn.dark-mode:focus {
+    background-color: #00b358;
+}
+
+#searchInput.dark-mode {
+    background: #1e1e1e;
+    color: #e0e0e0;
+    border: 1.5px solid #00e676;
+}
+
+#appsGrid.dark-mode {
+    background: #1e1e1e;
+}
+
+.app-tile.dark-mode {
+    background-color: #2c2c2c;
+    border-radius: 12px;
+    padding: 12px 10px 14px;
+    text-align: center;
+    cursor: pointer;
+    position: relative;
+    transition: background-color 0.2s ease;
+    user-select: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.app-tile.dark-mode:hover,
+.app-tile.dragging.dark-mode {
+    background-color: #3a3a3a;
+}
+
+.app-icon.dark-mode {
+    color: #00e676;
+}
+
+.app-name.dark-mode {
+    color: #e0e0e0;
+}
+
+.btn-small.dark-mode {
+    background: #ff4c4c;
+    color: white;
+}
+
+.btn-small.dark-mode:hover,
+.btn-small.dark-mode:focus {
+    background: #e60000;
+}
+
+.protocol-badge.dark-mode {
+    background: #00e676;
+    color: black;
+}
+
+#modalBackdrop.dark-mode {
+    background: rgba(18, 18, 18, 0.9);
+}
+
+#editModal.dark-mode {
+    background: #2c2c2c;
+    color: #e0e0e0;
+}
+
+#editModal label {
+    color: #e0e0e0;
+}
+
+#editModal input {
+    background: #1e1e1e;
+    color: #e0e0e0;
+    border: 1.5px solid #00e676;
+}
+
+#editModal input:focus {
+    border-color: #00b358;
+}
+
+#modalButtons button.dark-mode {
+    background-color: #00e676;
+    color: white;
+}
+
+#modalButtons button.dark-mode:hover, #modalButtons button.dark-mode:focus {
+    background-color: #00b358;
+}
+
+#recentlyUsedSection.dark-mode {
+    background: #1e1e1e;
+    padding: 8px;
+    border-radius: 8px;
+}
+
+.recent-app-tile.dark-mode {
+    background-color: #2c2c2c;
+    border-radius: 12px;
+    padding: 12px 10px 14px;
+    text-align: center;
+    cursor: pointer;
+    position: relative;
+    transition: background-color 0.2s ease;
+    user-select: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.recent-app-tile.dark-mode:hover {
+    background-color: #3a3a3a;
+}
+
+#tipsModalBackdrop, #backupModalBackdrop {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1002;
+}
+#tipsModal, #backupModal {
+    background: white;
+    border-radius: 12px;
+    padding: 20px 25px;
+    width: 260px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+body.theme-blue {
+    background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+    color: #1565c0;
+    transition: background 0.5s;
+}
+.popup-container.theme-blue {
+    background: transparent;
+}
+.header.theme-blue h1,
+#settingsBtn.theme-blue {
+    color: #1976d2;
+    transition: color 0.3s;
+}
+#addAppBtn.theme-blue,
+#saveBtn.theme-blue {
+    background-color: #1976d2;
+    color: white;
+    box-shadow: 0 2px 8px rgba(25,118,210,0.12);
+    transition: background 0.3s, box-shadow 0.3s;
+}
+#addAppBtn.theme-blue:hover,
+#saveBtn.theme-blue:hover {
+    background-color: #1565c0;
+}
+#searchInput.theme-blue {
+    border: 1.5px solid #1976d2;
+    background: #e3f2fd;
+    color: #1565c0;
+    transition: background 0.3s, color 0.3s;
+}
+
+body.theme-pink {
+    background: linear-gradient(135deg, #fce4ec 0%, #f8bbd0 100%);
+    color: #ad1457;
+    transition: background 0.5s;
+}
+.popup-container.theme-pink {
+    background: transparent;
+}
+.header.theme-pink h1,
+#settingsBtn.theme-pink {
+    color: #d81b60;
+    transition: color 0.3s;
+}
+#addAppBtn.theme-pink,
+#saveBtn.theme-pink {
+    background-color: #d81b60;
+    color: white;
+    box-shadow: 0 2px 8px rgba(216,27,96,0.12);
+    transition: background 0.3s, box-shadow 0.3s;
+}
+#addAppBtn.theme-pink:hover,
+#saveBtn.theme-pink:hover {
+    background-color: #ad1457;
+}
+#searchInput.theme-pink {
+    border: 1.5px solid #d81b60;
+    background: #fce4ec;
+    color: #ad1457;
+    transition: background 0.3s, color 0.3s;
+}
+
+.app-tile {
+    min-height: 80px;
+    height: 80px;
+    border: 2px solid #e0e0e0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    animation: tileFadeIn 0.5s;
+}
+@keyframes tileFadeIn {
+    from { opacity: 0; transform: translateY(12px) scale(0.95);}
+    to { opacity: 1; transform: translateY(0) scale(1);}
+}
+.app-tile:hover {
+    box-shadow: 0 4px 16px rgba(0,204,102,0.12);
+    transform: scale(1.03);
+    transition: box-shadow 0.2s, transform 0.2s;
+}
+
+button {
+    transition: transform 0.2s;
+}
+button:active {
+    transform: scale(0.96);
+}
+
+.header {
+    animation: headerDrop 0.7s;
+}
+@keyframes headerDrop {
+    from { opacity: 0; transform: translateY(-24px);}
+    to { opacity: 1; transform: translateY(0);}
+}
+
+#modalBackdrop[style*="display: flex"],
+#settingsModalBackdrop[style*="display: flex"],
+#tipsModalBackdrop[style*="display: flex"],
+#backupModalBackdrop[style*="display: flex"] {
+    animation: modalFadeIn 0.4s;
+}
+@keyframes modalFadeIn {
+    from { opacity: 0;}
+    to { opacity: 1;}
+}
+.header-subtitle {
+    font-size: 0.9em;
+    color: #f0f0f0;
+    margin-left: 12px;
+    font-weight: 400;
+    user-select: none;
+}
