@@ -23,5 +23,8 @@
                 "default": "Ctrl+Shift+Space"
             }
         }
+    },
+    "background": {
+        "service_worker": "background.js"
     }
 }
