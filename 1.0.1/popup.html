@@ -8,7 +8,7 @@
     <body>
         <div id="popup-opening-animation" style="display:none; position:fixed; top:0; left:0; right:0; bottom:0; background:#222; z-index:9999; align-items:center; justify-content:center; flex-direction:column;">
             <img src="icons/kwik-128.png" alt="KWIK Logo" style="width:72px; height:72px; animation: popupLogoPop 0.7s;">
-            <div style="color:#00cc66; font-size:2em; font-weight:bold; margin-top:12px; animation: popupTextPop 0.7s;">KWIK</div>
+            <div style="color:#0c6; font-size:2em; font-weight:bold; margin-top:12px; animation: popupTextPop 0.7s;">KWIK</div>
         </div>
         <div class="kwik-footer-container">
             <footer class="kwik-footer">
@@ -23,6 +23,8 @@
             </footer>
         </div>
         <div class="popup-container" role="main">
+            <button class="close-button" id="close-btn">×</button>
+            
             <div class="header">
                 <h1>KWIK</h1><span class="header-subtitle">version 1.0.1</span>
                 <button id="settingsBtn" title="Settings" aria-label="Settings">⚙️</button>
