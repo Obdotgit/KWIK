@@ -2,6 +2,7 @@ const STORAGE_KEY = 'kwik_apps';
 const FAVORITES_KEY = 'kwik_favorites';
 const RECENT_KEY = 'kwik_recent';
 const DARK_MODE_KEY = 'kwik_darkmode';
+const OPENING_ANIM_KEY = 'kwik_show_opening_anim';
 
 let apps = [];
 let favorites = [];
@@ -41,7 +42,6 @@ const importFileInput = document.getElementById('importFileInput');
 const closeBackupBtn = document.getElementById('closeBackupBtn');
 const showOpeningAnim = document.getElementById('showOpeningAnim');
 
-const OPENING_ANIM_KEY = 'kwik_show_opening_anim';
 const tips = [
     "Tip: Drag and drop apps to reorder them.",
     "Tip: Use the star button to mark your favorite apps.",
