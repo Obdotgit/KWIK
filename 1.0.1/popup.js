@@ -4,13 +4,6 @@ const RECENT_KEY = 'kwik_recent';
 const DARK_MODE_KEY = 'kwik_darkmode';
 const OPENING_ANIM_KEY = 'kwik_show_opening_anim';
 
-let apps = [];
-let favorites = [];
-let recentlyUsed = [];
-let darkMode = false;
-let dragSrcEl = null;
-let editingIndex = null;
-
 const appsGrid = document.getElementById('appsGrid');
 const addAppBtn = document.getElementById('addAppBtn');
 const searchInput = document.getElementById('searchInput');
@@ -19,6 +12,7 @@ const appNameInput = document.getElementById('appNameInput');
 const appUrlInput = document.getElementById('appUrlInput');
 const appIconInput = document.getElementById('appIconInput');
 const cancelBtn = document.getElementById('cancelBtn');
+const closeBtn = document.getElementById('close-btn');
 const saveBtn = document.getElementById('saveBtn');
 const favoritesFilterBtn = document.getElementById('favoritesFilterBtn');
 const sortAlphaBtn = document.getElementById('sortAlphaBtn');
@@ -61,7 +55,17 @@ const SPECIAL_APPS = [
     }
 ];
 
+let apps = [];
+let favorites = [];
+let recentlyUsed = [];
+let darkMode = false;
+let dragSrcEl = null;
+let editingIndex = null;
 let showFavoritesOnly = false;
+
+document.getElementById('close-btn').addEventListener('click', function() {
+    window.close();
+});
 
 function isProtocolUrl(url) {
     try {
@@ -676,8 +680,4 @@ window.addEventListener('DOMContentLoaded', () => {
             tipsModalBackdrop.style.display = 'flex';
         }
     });
-});
-
-document.getElementById('close-btn').addEventListener('click', function() {
-    window.close();
 });
